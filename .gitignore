@@ -1,0 +1,4 @@
+osx/backups/*
+ubuntu/backups/*
+!osx/backups/.gitkeep
+!ubuntu/backups/.gitkeep
