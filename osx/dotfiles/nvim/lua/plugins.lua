@@ -25,7 +25,7 @@ local function plugins(use)
 	use {
 		'folke/tokyonight.nvim',
 		config = function()
-			vim.cmd 'colorscheme tokyonight-storm'
+			vim.cmd 'colorscheme tokyonight-night'
 		end,
 	}
 
@@ -39,7 +39,7 @@ local function plugins(use)
 
 	-- Telescope, a handy fuzzyfinder list
 	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.1',
+		'nvim-telescope/telescope.nvim', tag = '0.1.4',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
@@ -83,6 +83,9 @@ local function plugins(use)
 
 	-- formatter.nvim, manages code formatters like Prettier
 	use 'mhartington/formatter.nvim'
+
+	-- Copilot
+	use 'github/copilot.vim'
 end
 
 return require('packer').startup(plugins)
