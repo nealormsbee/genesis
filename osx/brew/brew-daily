@@ -25,7 +25,7 @@ brew upgrade
 # upgrade casks
 echo Upgrading casks...
 speak "Upgrading casks"
-brew cask upgrade
+brew upgrade --cask
 
 # remove old package versions
 echo Removing old versions...
