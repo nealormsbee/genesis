@@ -1,3 +1,4 @@
-require('plugins')
-require('remap')
-require('cfg')
+require("cfg")
+require("remap")
+require("config.lazy")
+require("lsp")

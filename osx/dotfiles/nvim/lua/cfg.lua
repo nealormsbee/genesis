@@ -1,8 +1,8 @@
-vim.wo.number = true
-vim.opt.guicursor = ""
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-vim.opt.mouse = ""
-vim.opt.smartindent = true
-vim.opt.swapfile = false
-vim.opt.updatetime = 50
+vim.wo.number = true -- show line numbers
+vim.opt.guicursor = "" -- use fat block cursor in all cases
+vim.opt.hlsearch = false -- don't highlight all match instances of submitted search
+vim.opt.incsearch = true -- do highlight next search match while typing the search
+vim.opt.mouse = "" -- disable mouse support
+vim.opt.smartindent = true -- automatically indent correctly for C-like syntax
+vim.opt.swapfile = false -- don't create a .swp file when editing
+vim.opt.updatetime = 50 -- run bg tasks 50ms after cursor stops moving; ultra-responsive

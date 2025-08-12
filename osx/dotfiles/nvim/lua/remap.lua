@@ -1,8 +1,9 @@
 local function explore()
-  vim.cmd('Ex')
+	vim.cmd("Ex")
 end
 
-vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>pv', explore)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
-vim.keymap.set('n', '<leader>q', 'I// <Esc>')
+vim.keymap.set("n", "<leader>pv", explore)
+vim.keymap.set("n", "<leader>q", "I// <Esc>")
