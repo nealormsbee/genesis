@@ -13,11 +13,11 @@ vim.lsp.config("tsls", {
 })
 
 -- ESLint
-vim.lsp.config("eslint", {
-	cmd = { "vscode-eslint-language-server", "--stdio" },
-	filetypes = { "typescript", "javascript", "typescriptreact" },
-	root_markers = { ".eslitrc" },
-})
+-- vim.lsp.config("eslint", {
+-- cmd = { "vscode-eslint-language-server", "--stdio" },
+-- filetypes = { "typescript", "javascript", "typescriptreact" },
+-- root_markers = { ".eslintrc" },
+-- })
 
 -- Golang
 vim.lsp.config("gopls", {
