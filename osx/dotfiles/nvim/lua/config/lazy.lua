@@ -24,7 +24,7 @@ require("lazy").setup({
 		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				-- A list of parser names, or 'all' (the five listed parsers should always be installed)
+				-- A list of parser names, or 'all'
 				ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript", "go", "yaml" },
 
 				-- Install parsers synchronously (only applied to `ensure_installed`)
@@ -48,7 +48,7 @@ require("lazy").setup({
 		end,
 	},
 	spec = {
-		-- import your plugins
+		-- import plugins
 		{ import = "plugins" },
 	},
 	-- Configure any other settings here. See the documentation for more details.

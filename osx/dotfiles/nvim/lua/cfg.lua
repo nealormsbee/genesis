@@ -6,3 +6,4 @@ vim.opt.mouse = "" -- disable mouse support
 vim.opt.smartindent = true -- automatically indent correctly for C-like syntax
 vim.opt.swapfile = false -- don't create a .swp file when editing
 vim.opt.updatetime = 50 -- run bg tasks 50ms after cursor stops moving; ultra-responsive
+vim.opt.signcolumn = "yes" -- reserve space for lint sign markers rather than shifting content when a sign is needed
