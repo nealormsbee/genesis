@@ -94,12 +94,9 @@ return {
 				},
 			})
 
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			lspconfig["lua_ls"].setup({ capabilities = capabilities })
-			lspconfig["ts_ls"].setup({ capabilities = capabilities })
-			lspconfig["eslint"].setup({ capabilities = capabilities })
-			lspconfig["gopls"].setup({ capabilities = capabilities })
+			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- vim.lsp.config["lua_ls"].setup({ capabilities = capabilities })
+			-- vim.lsp.config["gopls"].setup({ capabilities = capabilities })
 		end,
 	},
 	{
@@ -107,9 +104,86 @@ return {
 		lazy = true,
 		event = "BufReadPost",
 		config = function(_, servers)
-			for server, opts in pairs(servers) do
-				require("lspconfig")[server].setup(opts)
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			-- Enable diagnostics
+			vim.diagnostic.config({
+				virtual_text = true, -- Show diagnostics as virtual text
+				signs = true, -- Show signs in the sign column
+				underline = true, -- Underline problematic code
+				update_in_insert = false,
+				severity_sort = true,
+			})
+
+			-- Define diagnostic signs
+			local signs = { Error = "✘", Warn = "▲", Hint = "⚑", Info = "»" }
+			for type, icon in pairs(signs) do
+				local hl = "DiagnosticSign" .. type
+				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 			end
+
+			-- TypeScript/JavaScript
+
+			-- TSServer
+			vim.lsp.config.ts_ls = {
+				cmd = { "typescript-language-server", "--stdio" },
+				filetypes = { "typescript", "typescriptreact" },
+				root_markers = { "package.json", "tsconfig.json" },
+				capabilities = capabilities,
+			}
+
+			-- ESLint
+			vim.lsp.config.eslint = {
+				cmd = { "vscode-eslint-language-server", "--stdio" },
+				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+				root_markers = {
+					".eslintrc",
+					".eslintrc.js",
+					".eslintrc.ts",
+					".eslintrc.json",
+					"eslint.config.js",
+					"eslint.config.ts",
+					"eslint.config.cjs",
+					"eslint.config.mjs",
+					"eslint.config.cts",
+					"eslint.config.mts",
+					"package.json",
+				},
+				capabilities = capabilities,
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.code_action({
+								context = { only = { "source.fixAll.eslint" } },
+								apply = true,
+							})
+						end,
+					})
+				end,
+			}
+
+			-- Lua
+			vim.lsp.config.lua_ls = {
+				cmd = { "stylua" },
+				filetypes = { "lua" },
+				root_markers = { ".luarc.json", ".stylua.toml", "stylua.toml", ".git" },
+				capabilities = capabilities,
+			}
+
+			-- Golang
+			vim.lsp.config.gopls = {
+				cmd = { "gopls" },
+				filetypes = { "go" },
+				root_markers = { "go.mod", "go.sum", ".git" },
+				capabilities = capabilities,
+			}
+
+			-- Enable the LSP servers
+			vim.lsp.enable("ts_ls")
+			vim.lsp.enable("eslint")
+			vim.lsp.enable("lua_ls")
+			vim.lsp.enable("gopls")
 		end,
 	},
 	{ "mbbill/undotree", lazy = true },
