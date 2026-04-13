@@ -165,7 +165,7 @@ return {
 
 			-- Lua
 			vim.lsp.config.lua_ls = {
-				cmd = { "stylua" },
+				cmd = { "stylua", "-" },
 				filetypes = { "lua" },
 				root_markers = { ".luarc.json", ".stylua.toml", "stylua.toml", ".git" },
 				capabilities = capabilities,
@@ -188,6 +188,6 @@ return {
 	},
 	{ "mbbill/undotree", lazy = true },
 	{ "tpope/vim-fugitive", lazy = true },
-	{ "mhartington/formatter.nvim", lazy = true },
+	{ "mhartington/formatter.nvim", lazy = true, event = "BufWritePost" },
 	{ "folke/lazydev.nvim", lazy = true, ft = "lua" },
 }
