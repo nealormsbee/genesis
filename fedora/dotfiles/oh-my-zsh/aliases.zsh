@@ -1,0 +1,7 @@
+alias j='jump'
+alias k='kubectl'
+alias kn='kubens'
+alias kx='kubectx'
+alias turbo='npx turbo'
+alias v='nvim'
+alias vim='nvim'

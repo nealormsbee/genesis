@@ -1,0 +1,33 @@
+#!/usr/bin/zsh
+
+# update yum
+echo "Updating yum packages..."
+sudo yum -y update
+
+# upgrade yum
+echo "Upgrading yum packages..."
+sudo yum -y upgrade
+
+# clean up yum
+echo "Cleaning up unused yum dependencies..."
+sudo yum -y autoremove
+
+# clear yum cache
+echo "Clearing yum cache..."
+sudo yum -y clean all
+
+# update om-my-zsh
+echo "Updating oh-my-zsh..."
+ZSH='/home/neal/.oh-my-zsh'
+zsh "$ZSH/tools/upgrade.sh"
+
+# initialize zinit for this shell
+source "/home/neal/.local/share/zinit/zinit.git/zinit.zsh"
+
+# update zinit
+echo "Updating zinit..."
+zi self-update
+
+# update zinit plugins
+echo "Updating zinit plugins..."
+zi update --parallel
