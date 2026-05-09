@@ -190,4 +190,33 @@ return {
 	{ "tpope/vim-fugitive", lazy = true },
 	{ "mhartington/formatter.nvim", lazy = true, event = "BufWritePost" },
 	{ "folke/lazydev.nvim", lazy = true, ft = "lua" },
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("lualine").setup({
+				options = {
+					theme = "tokyonight", -- 'gruvbox', 'tokyonight', etc.
+					globalstatus = true, -- use a single statusline at the bottom for all windows
+				},
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = { "branch", "diff", "diagnostics" },
+					lualine_c = { "filename" },
+					lualine_x = {
+						{
+							require("lazy.status").updates,
+							cond = require("lazy.status").has_updates,
+							color = { fg = "#ff9e64" },
+						},
+						"encoding",
+						"fileformat",
+						"filetype",
+					},
+					lualine_y = { "progress" },
+					lualine_z = { "location" },
+				},
+			})
+		end,
+	},
 }

@@ -146,3 +146,6 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 export PATH="$HOME/.local/bin:$PATH"
+
+# ensure that the homebrew env vars are set
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
