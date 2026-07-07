@@ -9,15 +9,15 @@ dotfiles: zsh
 	@ln -s $(pwd)dotfiles/zsh/.zshrc $$HOME
 	@ln -s $(pwd)dotfiles/oh-my-zsh/aliases.zsh $$HOME/.oh-my-zsh/custom/aliases.zsh
 
-zsh: yum
+zsh: dnf
 	# install oh-my-zsh
 	@sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 	# install zinit
 	@bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 
-yum:
+dnf:
 	# update repos and install basic tools
-	@yum -y update
-	@yum -y upgrade
-	@yum -y install gcc git neovim zsh
+	@dnf -y update
+	@dnf -y upgrade
+	@dnf -y install gcc git neovim zsh

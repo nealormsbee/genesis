@@ -1,20 +1,20 @@
 #!/usr/bin/zsh
 
-# update yum
-echo "Updating yum packages..."
-sudo yum -y update
+# update dnf
+echo "Updating dnf packages..."
+sudo dnf -y update
 
-# upgrade yum
-echo "Upgrading yum packages..."
-sudo yum -y upgrade
+# upgrade dnf
+echo "Upgrading dnf packages..."
+sudo dnf -y upgrade
 
-# clean up yum
-echo "Cleaning up unused yum dependencies..."
-sudo yum -y autoremove
+# clean up dnf
+echo "Cleaning up unused dnf dependencies..."
+sudo dnf -y autoremove
 
-# clear yum cache
-echo "Clearing yum cache..."
-sudo yum -y clean all
+# clear dnf cache
+echo "Clearing dnf cache..."
+sudo dnf -y clean all
 
 # update om-my-zsh
 echo "Updating oh-my-zsh..."
