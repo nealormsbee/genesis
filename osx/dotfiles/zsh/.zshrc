@@ -147,7 +147,7 @@ if [ -f '/Users/neal/code/tools/cloud/google-cloud-sdk/path.zsh.inc' ]; then . '
 if [ -f '/Users/neal/code/tools/cloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/neal/code/tools/cloud/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Prompt update for kube-ps1
-if [ -f "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"]; then
+if [ -f "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh" ]; then
 	source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
 	PS1='$(kube_ps1)'$PS1
 fi
