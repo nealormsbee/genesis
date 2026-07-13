@@ -209,6 +209,6 @@ return {
 	},
 	{ "mbbill/undotree", lazy = true },
 	{ "tpope/vim-fugitive", lazy = true },
-	{ "mhartington/formatter.nvim", lazy = true, event = "BufWritePost" },
+	{ "mhartington/formatter.nvim" },
 	{ "folke/lazydev.nvim", lazy = true, ft = "lua" },
 }
