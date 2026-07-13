@@ -1,3 +1,9 @@
+# Kiro CLI pre block. Keep at the top of this file.
+# Only runs `source` if Kiro pre is installed.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+
+
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -141,8 +147,10 @@ if [ -f '/Users/neal/code/tools/cloud/google-cloud-sdk/path.zsh.inc' ]; then . '
 if [ -f '/Users/neal/code/tools/cloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/neal/code/tools/cloud/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Prompt update for kube-ps1
-source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
-PS1='$(kube_ps1)'$PS1
+if [ -f "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"]; then
+	source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
+	PS1='$(kube_ps1)'$PS1
+fi
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -152,14 +160,19 @@ export NVM_DIR="$HOME/.nvm"
 # go
 export GOPATH=$(go env GOPATH)
 export PATH=$PATH:$GOPATH/bin
+
+# krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
+# Kubernetes auth setting
 export USE_GKE_GCLOUD_AUTH_PLUGIN=true
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-# local cost model env vars
-export PROMETHEUS_SERVER_ENDPOINT="http://127.0.0.1:9080"
-export ETL_PATH_PREFIX="/Users/neal/code/local-env"
-export CONFIG_PATH="$ETL_PATH_PREFIX"
+# IBM-laptop specific setup
+if [ -f "$HOME/.oh-my-zsh/custom/ibm.zsh" ]; then source "$HOME/.oh-my-zsh/custom/ibm.zsh"; fi
+
+# Kiro CLI post block. Keep at the bottom of this file.
+# Only runs `source` if Kiro post is installed.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"

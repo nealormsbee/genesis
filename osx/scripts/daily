@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 if [ "$1" = "--speak" ]; then
   doSpeak=true
@@ -41,3 +41,22 @@ brew services restart --all
 echo Running brew system check...
 speak "Running brew doctor"
 brew doctor
+
+# update om-my-zsh
+echo "Updating oh-my-zsh..."
+ZSH='/home/neal/.oh-my-zsh'
+zsh "$ZSH/tools/upgrade.sh"
+
+# initialize zinit for this shell
+source "/home/neal/.local/share/zinit/zinit.git/zinit.zsh"
+
+# update zinit
+echo "Updating zinit..."
+zi self-update
+
+# update zinit plugins
+echo "Updating zinit plugins..."
+zi update --parallel
+
+# update neovim plugins via lazy.nvim
+nvim --headless "+Lazy! sync" +qa

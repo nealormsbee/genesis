@@ -6,3 +6,6 @@ ubuntu/backups/*
 
 # No tracking nvim plugins
 **/nvim/plugin
+
+# No tracking env-specific custom setups
+osx/dotfiles/oh-my-zsh/custom/*.zsh
