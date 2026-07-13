@@ -32,6 +32,11 @@ echo Removing old versions...
 speak "Removing old versions"
 brew cleanup
 
+# restart background services
+echo "Restarting background services..."
+speak "Restarting background services..."
+brew services restart --all
+
 # confirm system integrity
 echo Running brew system check...
 speak "Running brew doctor"

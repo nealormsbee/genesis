@@ -172,6 +172,8 @@ return {
 			}
 
 			-- Golang
+
+			-- gopls
 			vim.lsp.config.gopls = {
 				cmd = { "gopls" },
 				filetypes = { "go" },
@@ -179,11 +181,30 @@ return {
 				capabilities = capabilities,
 			}
 
+			-- golangci-lint
+			vim.lsp.config.golangci_lint = {
+				cmd = { "golangci-lint-langserver" },
+				filetypes = { "go" },
+				root_markers = { "go.mod", "go.sum", ".git" },
+				capabilities = capabilities,
+				init_options = {
+					command = {
+						"golangci-lint",
+						"run",
+						"--output.json.path",
+						"stdout",
+						"--show-stats=false",
+						"--issues-exit-code=1",
+					},
+				},
+			}
+
 			-- Enable the LSP servers
 			vim.lsp.enable("ts_ls")
 			vim.lsp.enable("eslint")
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("gopls")
+			vim.lsp.enable("golangci_lint")
 		end,
 	},
 	{ "mbbill/undotree", lazy = true },
